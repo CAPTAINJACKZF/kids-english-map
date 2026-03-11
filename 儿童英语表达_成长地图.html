@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>儿童英语表达能力成长地图 | 500主题 · 3–5年路径</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --l1: #FF6B6B; --l1-light: #FFE8E8; --l1-dark: #CC4444;
+    --l2: #FF9F43; --l2-light: #FFF0DC; --l2-dark: #CC7A1A;
+    --l3: #26C6DA; --l3-light: #E0F7FA; --l3-dark: #0097A7;
+    --l4: #42A5F5; --l4-light: #E3F2FD; --l4-dark: #1565C0;
+    --l5: #AB47BC; --l5-light: #F3E5F5; --l5-dark: #7B1FA2;
+    --l6: #66BB6A; --l6-light: #E8F5E9; --l6-dark: #2E7D32;
+    --bg: #0F1923;
+    --card: #1A2535;
+    --text: #E8EDF5;
+    --muted: #8B9BB4;
+    --border: #2A3A50;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 60px 24px 40px;
+    position: relative;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(66,165,245,0.12), transparent);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #42A5F5, #AB47BC);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 0%, #42A5F5 60%, #AB47BC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  /* ── STATS ROW ── */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 36px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #42A5F5, #AB47BC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── EXPRESSION PATH ── */
+  .section-title {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .expr-path {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto 64px;
+    padding: 0 24px;
+  }
+  .expr-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+  }
+  .expr-step + .expr-step::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-70%);
+    color: var(--muted);
+    font-size: 18px;
+    font-weight: 300;
+  }
+  .expr-bubble {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.2;
+    border: 2px solid transparent;
+    cursor: default;
+    transition: transform .2s;
+  }
+  .expr-bubble:hover { transform: scale(1.1); }
+  .expr-num {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 2px;
+  }
+  .expr-label { color: var(--muted); font-size: 11px; margin-top: 4px; }
+
+  .expr-step:nth-child(1) .expr-bubble { background: var(--l1-light); color: var(--l1-dark); border-color: var(--l1); }
+  .expr-step:nth-child(2) .expr-bubble { background: var(--l2-light); color: var(--l2-dark); border-color: var(--l2); }
+  .expr-step:nth-child(3) .expr-bubble { background: var(--l3-light); color: var(--l3-dark); border-color: var(--l3); }
+  .expr-step:nth-child(4) .expr-bubble { background: var(--l4-light); color: var(--l4-dark); border-color: var(--l4); }
+  .expr-step:nth-child(5) .expr-bubble { background: var(--l5-light); color: var(--l5-dark); border-color: var(--l5); }
+  .expr-step:nth-child(6) .expr-bubble { background: var(--l6-light); color: var(--l6-dark); border-color: var(--l6); }
+
+  /* ── TIMELINE ── */
+  .timeline-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--l1), var(--l2), var(--l3), var(--l4), var(--l5), var(--l6));
+    transform: translateX(-50%);
+  }
+
+  .level-card {
+    position: relative;
+    display: flex;
+    margin-bottom: 56px;
+    gap: 40px;
+    align-items: flex-start;
+  }
+  .level-card:nth-child(even) { flex-direction: row-reverse; }
+  .level-card:nth-child(even) .card-body { text-align: right; }
+  .level-card:nth-child(even) .tag-row { justify-content: flex-end; }
+  .level-card:nth-child(even) .topic-grid { direction: rtl; }
+  .level-card:nth-child(even) .topic-chip { direction: ltr; }
+
+  .level-dot {
+    position: absolute;
+    left: 50%;
+    top: 24px;
+    transform: translate(-50%, 0);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 14px;
+    z-index: 2;
+    box-shadow: 0 0 0 4px var(--bg);
+    flex-shrink: 0;
+  }
+
+  .card-spacer { width: calc(50% - 44px); flex-shrink: 0; }
+
+  .card-body {
+    width: calc(50% - 44px);
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px 28px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    transition: box-shadow .2s;
+  }
+  .card-body:hover { box-shadow: 0 8px 32px rgba(0,0,0,.4); }
+
+  .level-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .level-card:nth-child(even) .level-header { flex-direction: row-reverse; }
+
+  .level-badge {
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .level-title {
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .level-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .meta-item {
+    background: rgba(255,255,255,.04);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .meta-val { font-size: 18px; font-weight: 800; }
+  .meta-key { font-size: 10px; color: var(--muted); margin-top: 2px; letter-spacing: .5px; }
+
+  .tag-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .tag {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(255,255,255,.06);
+    color: var(--muted);
+  }
+  .tag.highlight {
+    background: rgba(66,165,245,.15);
+    color: #90CAF9;
+  }
+
+  .topic-title {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .topic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .topic-chip {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid;
+    opacity: .85;
+    transition: opacity .15s;
+  }
+  .topic-chip:hover { opacity: 1; }
+
+  /* Level colors */
+  .l1 { --lc: var(--l1); --lc-light: var(--l1-light); --lc-dark: var(--l1-dark); }
+  .l2 { --lc: var(--l2); --lc-light: var(--l2-light); --lc-dark: var(--l2-dark); }
+  .l3 { --lc: var(--l3); --lc-light: var(--l3-light); --lc-dark: var(--l3-dark); }
+  .l4 { --lc: var(--l4); --lc-light: var(--l4-light); --lc-dark: var(--l4-dark); }
+  .l5 { --lc: var(--l5); --lc-light: var(--l5-light); --lc-dark: var(--l5-dark); }
+  .l6 { --lc: var(--l6); --lc-light: var(--l6-light); --lc-dark: var(--l6-dark); }
+
+  .level-dot { background: var(--lc); color: #fff; }
+  .level-badge { background: color-mix(in srgb, var(--lc) 20%, transparent); color: var(--lc); }
+  .meta-val { color: var(--lc); }
+  .topic-chip { border-color: color-mix(in srgb, var(--lc) 40%, transparent); color: var(--lc); background: color-mix(in srgb, var(--lc) 8%, transparent); }
+  .card-body { border-color: color-mix(in srgb, var(--lc) 20%, var(--border)); }
+
+  /* ── SKILL PATH ── */
+  .skill-section {
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+  }
+
+  .world-path {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .world-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    padding: 0 8px;
+  }
+  .world-step + .world-step::before {
+    content: '→';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-70%);
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .world-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    transition: transform .2s;
+  }
+  .world-icon:hover { transform: translateY(-4px); }
+  .world-name { font-size: 11px; color: var(--muted); font-weight: 600; }
+
+  /* ── YEAR TIMELINE ── */
+  .year-bar-wrap {
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+  }
+  .year-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .year-block {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 20px 16px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: transform .2s;
+  }
+  .year-block:hover { transform: translateY(-4px); }
+  .year-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .year-levels {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .year-level-tag {
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .year-goal {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .watermark {
+    font-size: 18px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #42A5F5, #AB47BC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+
+  @media (max-width: 768px) {
+    .timeline::before { left: 20px; }
+    .level-card, .level-card:nth-child(even) { flex-direction: column; padding-left: 52px; }
+    .level-card:nth-child(even) .card-body { text-align: left; }
+    .level-card:nth-child(even) .tag-row { justify-content: flex-start; }
+    .level-card:nth-child(even) .topic-grid { direction: ltr; }
+    .level-card:nth-child(even) .level-header { flex-direction: row; }
+    .level-dot { left: 20px; transform: translateX(-50%); }
+    .card-spacer { display: none; }
+    .card-body { width: 100%; }
+    .year-bar { grid-template-columns: repeat(2, 1fr); }
+    .meta-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">课程 IP 体系 · 完整版</div>
+  <h1>儿童英语表达能力<br>成长地图</h1>
+  <p class="hero-sub">500主题 · 6级课程 · 3–5年成长路径 · 语言习得 × 认知发展</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">500</div><div class="stat-label">核心主题</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">课程等级</div></div>
+    <div class="stat"><div class="stat-num">3–5</div><div class="stat-label">年成长路径</div></div>
+    <div class="stat"><div class="stat-num">5+</div><div class="stat-label">年龄适配</div></div>
+    <div class="stat"><div class="stat-num">4000+</div><div class="stat-label">目标词汇量</div></div>
+  </div>
+</div>
+
+<!-- EXPRESSION PATH -->
+<div style="max-width:900px;margin:0 auto;padding:0 24px;">
+  <p class="section-title">表达能力成长路径</p>
+  <div class="expr-path">
+    <div class="expr-step">
+      <div class="expr-bubble"><div class="expr-num">①</div>命名<br>Naming</div>
+      <div class="expr-label">说出名字</div>
+    </div>
+    <div class="expr-step">
+      <div class="expr-bubble"><div class="expr-num">②</div>描述<br>Describing</div>
+      <div class="expr-label">描述特征</div>
+    </div>
+    <div class="expr-step">
+      <div class="expr-bubble"><div class="expr-num">③</div>解释<br>Explaining</div>
+      <div class="expr-label">说清原因</div>
+    </div>
+    <div class="expr-step">
+      <div class="expr-bubble"><div class="expr-num">④</div>比较<br>Comparing</div>
+      <div class="expr-label">分析异同</div>
+    </div>
+    <div class="expr-step">
+      <div class="expr-bubble"><div class="expr-num">⑤</div>观点<br>Opinion</div>
+      <div class="expr-label">表达立场</div>
+    </div>
+    <div class="expr-step">
+      <div class="expr-bubble"><div class="expr-num">⑥</div>思辨<br>Argument</div>
+      <div class="expr-label">逻辑论证</div>
+    </div>
+  </div>
+</div>
+
+<!-- WORLD PATH -->
+<div class="skill-section">
+  <p class="section-title">认知世界路径</p>
+  <div class="world-path">
+    <div class="world-step"><div class="world-icon">🙋</div><div class="world-name">Self</div></div>
+    <div class="world-step"><div class="world-icon">👨‍👩‍👧</div><div class="world-name">Family</div></div>
+    <div class="world-step"><div class="world-icon">🏫</div><div class="world-name">Life</div></div>
+    <div class="world-step"><div class="world-icon">🌆</div><div class="world-name">Society</div></div>
+    <div class="world-step"><div class="world-icon">🌍</div><div class="world-name">World</div></div>
+    <div class="world-step"><div class="world-icon">💡</div><div class="world-name">Ideas</div></div>
+  </div>
+</div>
+
+<!-- 6 LEVELS TIMELINE -->
+<div class="timeline-wrap">
+  <p class="section-title" style="margin-bottom:48px;">六级课程体系</p>
+
+  <div class="timeline">
+
+    <!-- L1 -->
+    <div class="level-card l1">
+      <div class="card-body">
+        <div class="level-header">
+          <span class="level-badge">Level 1</span>
+          <span class="level-title">Starter · 起步探索</span>
+        </div>
+        <p class="level-sub">Topics 1–100 · 年龄 5–7岁 · 幼小衔接 / 一年级</p>
+        <div class="meta-grid">
+          <div class="meta-item"><div class="meta-val">500</div><div class="meta-key">目标词汇</div></div>
+          <div class="meta-item"><div class="meta-val">6月</div><div class="meta-key">建议时长</div></div>
+          <div class="meta-item"><div class="meta-val">命名</div><div class="meta-key">核心能力</div></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag highlight">I am…</span>
+          <span class="tag highlight">I have…</span>
+          <span class="tag highlight">I like…</span>
+          <span class="tag highlight">This is…</span>
+          <span class="tag">CEFR Pre-A1</span>
+        </div>
+        <p class="topic-title">核心主题领域</p>
+        <div class="topic-grid">
+          <span class="topic-chip">My Self</span>
+          <span class="topic-chip">My Family</span>
+          <span class="topic-chip">My Things</span>
+          <span class="topic-chip">Daily Life</span>
+          <span class="topic-chip">Animals</span>
+          <span class="topic-chip">Weather</span>
+          <span class="topic-chip">Activities</span>
+          <span class="topic-chip">Simple Reflection</span>
+        </div>
+      </div>
+      <div class="level-dot">L1</div>
+      <div class="card-spacer"></div>
+    </div>
+
+    <!-- L2 -->
+    <div class="level-card l2">
+      <div class="card-spacer"></div>
+      <div class="level-dot">L2</div>
+      <div class="card-body">
+        <div class="level-header">
+          <span class="level-badge">Level 2</span>
+          <span class="level-title">Explorer · 生活探索</span>
+        </div>
+        <p class="level-sub">Topics 101–200 · 年龄 7–9岁 · 二～三年级</p>
+        <div class="meta-grid">
+          <div class="meta-item"><div class="meta-val">1200</div><div class="meta-key">目标词汇</div></div>
+          <div class="meta-item"><div class="meta-val">8月</div><div class="meta-key">建议时长</div></div>
+          <div class="meta-item"><div class="meta-val">描述</div><div class="meta-key">核心能力</div></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag highlight">It is… / It has…</span>
+          <span class="tag highlight">Because…</span>
+          <span class="tag highlight">I usually…</span>
+          <span class="tag">CEFR A1</span>
+        </div>
+        <p class="topic-title">核心主题领域</p>
+        <div class="topic-grid">
+          <span class="topic-chip">Food & Health</span>
+          <span class="topic-chip">School Life</span>
+          <span class="topic-chip">Places</span>
+          <span class="topic-chip">Travel</span>
+          <span class="topic-chip">Nature</span>
+          <span class="topic-chip">Animals</span>
+          <span class="topic-chip">Culture</span>
+          <span class="topic-chip">Thinking Why</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L3 -->
+    <div class="level-card l3">
+      <div class="card-body">
+        <div class="level-header">
+          <span class="level-badge">Level 3</span>
+          <span class="level-title">Learner · 世界认知</span>
+        </div>
+        <p class="level-sub">Topics 201–300 · 年龄 9–11岁 · 三～五年级</p>
+        <div class="meta-grid">
+          <div class="meta-item"><div class="meta-val">2000</div><div class="meta-key">目标词汇</div></div>
+          <div class="meta-item"><div class="meta-val">8月</div><div class="meta-key">建议时长</div></div>
+          <div class="meta-item"><div class="meta-val">解释+比较</div><div class="meta-key">核心能力</div></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag highlight">It is different from…</span>
+          <span class="tag highlight">The reason is…</span>
+          <span class="tag highlight">Both… and…</span>
+          <span class="tag">CEFR A2</span>
+        </div>
+        <p class="topic-title">核心主题领域</p>
+        <div class="topic-grid">
+          <span class="topic-chip">Science</span>
+          <span class="topic-chip">History</span>
+          <span class="topic-chip">Technology</span>
+          <span class="topic-chip">Society</span>
+          <span class="topic-chip">Environment</span>
+          <span class="topic-chip">Personal Growth</span>
+          <span class="topic-chip">Education</span>
+          <span class="topic-chip">Big Questions</span>
+        </div>
+      </div>
+      <div class="level-dot">L3</div>
+      <div class="card-spacer"></div>
+    </div>
+
+    <!-- L4 -->
+    <div class="level-card l4">
+      <div class="card-spacer"></div>
+      <div class="level-dot">L4</div>
+      <div class="card-body">
+        <div class="level-header">
+          <span class="level-badge">Level 4</span>
+          <span class="level-title">Thinker · 深度思考</span>
+        </div>
+        <p class="level-sub">Topics 301–400 · 年龄 11–13岁 · 五～初一</p>
+        <div class="meta-grid">
+          <div class="meta-item"><div class="meta-val">3000</div><div class="meta-key">目标词汇</div></div>
+          <div class="meta-item"><div class="meta-val">10月</div><div class="meta-key">建议时长</div></div>
+          <div class="meta-item"><div class="meta-val">观点+论证</div><div class="meta-key">核心能力</div></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag highlight">I believe that…</span>
+          <span class="tag highlight">On the other hand…</span>
+          <span class="tag highlight">Although… however…</span>
+          <span class="tag">CEFR B1</span>
+        </div>
+        <p class="topic-title">核心主题领域</p>
+        <div class="topic-grid">
+          <span class="topic-chip">Future</span>
+          <span class="topic-chip">Innovation</span>
+          <span class="topic-chip">Leadership</span>
+          <span class="topic-chip">Global Issues</span>
+          <span class="topic-chip">Ethics</span>
+          <span class="topic-chip">Philosophy</span>
+          <span class="topic-chip">Creative Thinking</span>
+          <span class="topic-chip">Global Citizenship</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L5 -->
+    <div class="level-card l5">
+      <div class="card-body">
+        <div class="level-header">
+          <span class="level-badge">Level 5</span>
+          <span class="level-title">Speaker · 创意表达</span>
+        </div>
+        <p class="level-sub">Topics 401–470 · 年龄 12–14岁 · 初一～初二</p>
+        <div class="meta-grid">
+          <div class="meta-item"><div class="meta-val">3500</div><div class="meta-key">目标词汇</div></div>
+          <div class="meta-item"><div class="meta-val">8月</div><div class="meta-key">建议时长</div></div>
+          <div class="meta-item"><div class="meta-val">叙事+说服</div><div class="meta-key">核心能力</div></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag highlight">Storytelling</span>
+          <span class="tag highlight">Persuasion</span>
+          <span class="tag highlight">Debate</span>
+          <span class="tag">CEFR B1–B2</span>
+        </div>
+        <p class="topic-title">核心主题领域</p>
+        <div class="topic-grid">
+          <span class="topic-chip">Imagination</span>
+          <span class="topic-chip">Storytelling</span>
+          <span class="topic-chip">Persuasion</span>
+          <span class="topic-chip">Debate</span>
+          <span class="topic-chip">Leadership Speech</span>
+          <span class="topic-chip">My Vision</span>
+          <span class="topic-chip">My Values</span>
+          <span class="topic-chip">My Beliefs</span>
+        </div>
+      </div>
+      <div class="level-dot">L5</div>
+      <div class="card-spacer"></div>
+    </div>
+
+    <!-- L6 -->
+    <div class="level-card l6">
+      <div class="card-spacer"></div>
+      <div class="level-dot">L6</div>
+      <div class="card-body">
+        <div class="level-header">
+          <span class="level-badge">Level 6</span>
+          <span class="level-title">Leader · 领袖声音</span>
+        </div>
+        <p class="level-sub">Topics 471–500 · 年龄 13–15岁 · 初二～初三</p>
+        <div class="meta-grid">
+          <div class="meta-item"><div class="meta-val">4000+</div><div class="meta-key">目标词汇</div></div>
+          <div class="meta-item"><div class="meta-val">6月</div><div class="meta-key">建议时长</div></div>
+          <div class="meta-item"><div class="meta-val">演讲+影响力</div><div class="meta-key">核心能力</div></div>
+        </div>
+        <div class="tag-row">
+          <span class="tag highlight">Leadership Speech</span>
+          <span class="tag highlight">My Mission</span>
+          <span class="tag highlight">Change the World</span>
+          <span class="tag">CEFR B2+</span>
+        </div>
+        <p class="topic-title">核心主题领域</p>
+        <div class="topic-grid">
+          <span class="topic-chip">Graduation Speech</span>
+          <span class="topic-chip">Final Speech Series</span>
+          <span class="topic-chip">My Mission</span>
+          <span class="topic-chip">My Purpose</span>
+          <span class="topic-chip">Youth Power</span>
+          <span class="topic-chip">Hope for Tomorrow</span>
+          <span class="topic-chip">My Voice Matters</span>
+          <span class="topic-chip">Change the World</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 5-YEAR PATH -->
+<div class="year-bar-wrap">
+  <p class="section-title">3–5年学习路径规划</p>
+  <div class="year-bar">
+    <div class="year-block">
+      <div class="year-num">Year 1</div>
+      <div class="year-levels">
+        <div class="year-level-tag" style="background:color-mix(in srgb,var(--l1) 20%,transparent);color:var(--l1);">L1 Starter</div>
+        <div class="year-level-tag" style="background:color-mix(in srgb,var(--l2) 20%,transparent);color:var(--l2);">L2 开始</div>
+      </div>
+      <p class="year-goal">完成Topics 1–150<br>词汇量达800+<br>能够自我描述</p>
+    </div>
+    <div class="year-block">
+      <div class="year-num">Year 2</div>
+      <div class="year-levels">
+        <div class="year-level-tag" style="background:color-mix(in srgb,var(--l2) 20%,transparent);color:var(--l2);">L2 完成</div>
+        <div class="year-level-tag" style="background:color-mix(in srgb,var(--l3) 20%,transparent);color:var(--l3);">L3 开始</div>
+      </div>
+      <p class="year-goal">完成Topics 150–250<br>词汇量达1500+<br>能够解释原因</p>
+    </div>
+    <div class="year-block">
+      <div class="year-num">Year 3</div>
+      <div class="year-levels">
+        <div class="year-level-tag" style="background:color-mix(in srgb,var(--l3) 20%,transparent);color:var(--l3);">L3 完成</div>
+        <div class="year-level-tag" style="background:color-mix(in srgb,var(--l4) 20%,transparent);color:var(--l4);">L4 开始</div>
+      </div>
+      <p class="year-goal">完成Topics 250–360<br>词汇量达2500+<br>能够比较分析</p>
+    </div>
+    <div class="year-block">
+      <div class="year-num">Year 4</div>
+      <div class="year-levels">
+        <div class="year-level-tag" style="background:color-mix(in srgb,var(--l4) 20%,transparent);color:var(--l4);">L4 完成</div>
+        <div class="year-level-tag" style="background:color-mix(in srgb,var(--l5) 20%,transparent);color:var(--l5);">L5 开始</div>
+      </div>
+      <p class="year-goal">完成Topics 360–440<br>词汇量达3200+<br>能够辩论说服</p>
+    </div>
+    <div class="year-block">
+      <div class="year-num">Year 5</div>
+      <div class="year-levels">
+        <div class="year-level-tag" style="background:color-mix(in srgb,var(--l5) 20%,transparent);color:var(--l5);">L5 完成</div>
+        <div class="year-level-tag" style="background:color-mix(in srgb,var(--l6) 20%,transparent);color:var(--l6);">L6 Leader</div>
+      </div>
+      <p class="year-goal">完成Topics 440–500<br>词汇量达4000+<br>独立演讲 · 影响他人</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="watermark">儿童英语表达 500主题成长地图</div>
+  <p>500 Topics · 6 Levels · Pre-A1 → B2+ · 3–5 Year Journey</p>
+  <p style="margin-top:8px;font-size:11px;">Self → Family → Life → Society → World → Ideas</p>
+</footer>
+
+</body>
+</html>
